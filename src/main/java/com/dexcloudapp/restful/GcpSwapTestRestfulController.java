@@ -19,7 +19,6 @@ import com.dexcloudapp.swaptest.model.test.SwapTrade1;
 import com.dexcloudapp.swaptest.randomizer.RandomSwapCreator;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 
 @RestController
@@ -37,11 +36,11 @@ public class GcpSwapTestRestfulController {
 	
 	//@ApiOperation(value = "Create random swap", produces = "application/json")
 	@RequestMapping(value = "/randomirs", method = RequestMethod.POST)
-    public ResponseEntity <  SwapTrade1 > createSingleRandomIRS(@RequestBody MonoSwapRequest m) throws SwapTestException{
+    public ResponseEntity <  SwapTrade1 > createSingleRandomIRS(@RequestBody MonoSwapRequest monoswapRequest) throws SwapTestException{
 		SwapTrade1 s = null;
 		
 		RandomSwapCreator creator = SwaptestApplication.context.getBean("SwapRandomizer",RandomSwapCreator.class);
-        s=creator.prepareRandomIRS(1000000, "USD", "LIBOR", 3.0,true);
+        s=creator.prepareRandomIRS(monoswapRequest.ntl, monoswapRequest.ccy, monoswapRequest.index, monoswapRequest.rate,monoswapRequest.randomNtl);
         
         try{
         	Convert2DocumentInterface jsonHelper = SwaptestApplication.context.getBean("Convert2DocumentHelper",Convert2DocumentInterface.class);

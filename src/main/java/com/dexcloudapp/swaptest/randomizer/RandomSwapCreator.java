@@ -12,6 +12,8 @@ import com.dexcloudapp.swaptest.model.test.AssetLeg;
 import com.dexcloudapp.swaptest.model.test.SwapTrade1;
 import com.dexcloudapp.swaptest.utility.TradeIdCounter;
 
+
+
 /**
  * Created by dexter on 7/8/17.
  */
@@ -92,7 +94,7 @@ public class RandomSwapCreator {
         SwapTrade1 swp = new SwapTrade1();
         String location=this.getRandomLocation();
         
-        ntl = (randomNtl? ntl + random.nextGaussian() * ntl : ntl);
+        ntl = (randomNtl? ntl + Math.abs(random.nextGaussian()) * ntl : ntl);
 
         swp.setTradeId(TradeIdCounter.getTradeId(location,"SWAP"));
         int tenor = this.getRandomTenor();
