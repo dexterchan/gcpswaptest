@@ -4,12 +4,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-import javax.validation.constraints.AssertTrue;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.dexcloudapp.swaptest.testSwap;
 import com.dexcloudapp.swaptest.model.test.AssetFlow;
 import com.dexcloudapp.swaptest.model.test.AssetLeg;
 import com.dexcloudapp.swaptest.model.test.SwapTrade1;

@@ -19,6 +19,7 @@ import com.dexcloudapp.swaptest.model.test.SwapTrade1;
 import com.dexcloudapp.swaptest.randomizer.RandomSwapCreator;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 
 @RestController
@@ -34,6 +35,7 @@ public class GcpSwapTestRestfulController {
 		return "Hello!";
 	}
 	
+	//@ApiOperation(value = "Create random swap", produces = "application/json")
 	@RequestMapping(value = "/randomirs", method = RequestMethod.POST)
     public ResponseEntity <  SwapTrade1 > createSingleRandomIRS(@RequestBody MonoSwapRequest m) throws SwapTestException{
 		SwapTrade1 s = null;
