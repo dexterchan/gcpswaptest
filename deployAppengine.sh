@@ -1,0 +1,1 @@
+./mvnw -DskipTests appengine:deploy
