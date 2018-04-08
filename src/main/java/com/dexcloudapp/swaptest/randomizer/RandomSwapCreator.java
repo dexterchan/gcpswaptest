@@ -90,7 +90,7 @@ public class RandomSwapCreator {
 		this.maxTenor = maxTenor;
 	}
 	
-	public SwapTrade1 prepareRandomIRS(double ntl, String ccy, String index, double rate, boolean randomNtl){
+	public SwapTrade1 prepareRandomIRS(double ntl, String ccy, String index, double rate, boolean randomNtl, boolean gencashflow){
         SwapTrade1 swp = new SwapTrade1();
         String location=this.getRandomLocation();
         
@@ -123,7 +123,7 @@ public class RandomSwapCreator {
         FixLeg.setRate(rate);
         FixLeg.setSpread(0);
         FixLeg.setType("IRS");
-        for(int i=0;i<2*tenor;i++){
+        for(int i=0;i<2*tenor && gencashflow;i++){
             AssetFlow f = new AssetFlow();
             f.setCcy(ccy);
             double amt = ntl * rate/100 /2 * (payFix?-1:1);
@@ -149,7 +149,7 @@ public class RandomSwapCreator {
         fltLeg.setRate(0);
         fltLeg.setSpread(0);
         fltLeg.setType("IRS");
-        for(int i=0;i<2*tenor;i++){
+        for(int i=0;i<2*tenor && gencashflow;i++){
             AssetFlow f = new AssetFlow();
             f.setCcy(ccy);
             double amt = ntl * rate/100 /2 * (payFix?1:-1);

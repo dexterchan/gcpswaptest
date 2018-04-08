@@ -9,25 +9,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.dexcloudapp.swaptest.model.Convert2DocumentInterface;
 import com.dexcloudapp.swaptest.model.test.SwapTrade1;
 import com.dexcloudapp.swaptest.randomizer.RandomSwapCreator;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.cloud.datastore.Datastore;
+import com.google.cloud.datastore.DatastoreOptions;
+import com.google.cloud.datastore.Entity;
+import com.google.cloud.datastore.Key;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * Created by dexter on 7/8/17.
- */
-public class testSwap extends TestCase {
+public class testDataStore extends TestCase {
 
     Logger logger = LoggerFactory.getLogger(testSwap.class);
     public static TestSuite suite() {
         return new TestSuite(testSwap.class);
     }
 
-
     @Test
-    public void testSwapCreation() {
-        logger.debug("Run test swap");
+    public void testSwapStore() {
+    	logger.debug("Run test swap");
         
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringBeanConfig.xml");
         
@@ -41,10 +40,37 @@ public class testSwap extends TestCase {
         	String jsonInString =jsonHelper.returnDocumentString( s);
 //        String jsonInString = mapper.writeValueAsString(s);
         	logger.debug(jsonInString);
+        	
+        	/*
+        	// Instantiates a client
+            Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+            
+         // The kind for the new entity
+            String kind = "Swap";
+            // The name/ID for the new entity
+            String name = "sampleswap1";
+            // The Cloud Datastore key for the new entity
+            Key taskKey = datastore.newKeyFactory().setKind(kind).newKey(name);
+            
+         // Prepares the new entity
+            Entity swap = Entity.newBuilder(taskKey)
+                .set("raw", jsonInString)
+                .build();
+
+            // Saves the entity
+            datastore.put(swap);
+
+            System.out.printf("Saved %s: %s%n", swap.getKey().getName(), swap.getString("raw"));
+
+            //Retrieve entity
+            Entity retrieved = datastore.get(taskKey);
+
+            System.out.printf("Retrieved %s: %s%n", taskKey.getName(), retrieved.getString("raw"));
+*/
+        	
         }catch(Exception e){e.printStackTrace();}
         
-        
-        assert(true);
-
+    	
     }
+
 }

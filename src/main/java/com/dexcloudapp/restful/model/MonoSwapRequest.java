@@ -7,4 +7,5 @@ public class MonoSwapRequest {
 	public String index;
 	public double rate;
 	public boolean randomNtl;
+	public boolean generate_cashflow;
 }
